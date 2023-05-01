@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c467ba6d89481794da15d6c22b0728e0, type: 3}
+  m_Name: Settings_Jenga
+  m_EditorClassIdentifier: 
+  pieceTypes:
+  - pieceType: 0
+    pieceMass: 1
+    visualMaterial: {fileID: 2100000, guid: 631264748a7abdd49b48b5855e05bb6c, type: 2}
+    jengaPieceLabelText: NEED TO LEARN
+    uiLabelText: Glass
+  - pieceType: 1
+    pieceMass: 3
+    visualMaterial: {fileID: 2100000, guid: eee6ed48452dd7345917311750e0718e, type: 2}
+    jengaPieceLabelText: LEARNED
+    uiLabelText: Wood
+  - pieceType: 2
+    pieceMass: 6
+    visualMaterial: {fileID: 2100000, guid: b7755d54f05c48241a4aedb0dcfefd44, type: 2}
+    jengaPieceLabelText: MASTERED
+    uiLabelText: Stone
+  singlePieceDimensions: {x: 2.5, y: 1.5, z: 7.5}
+  jengaTowerRadius: 12
+  jengaTowerTopHoverDistance: 3
+  jengaTowerDistance: 6
