@@ -11,7 +11,7 @@ namespace Jenga.Main
     /// <summary>
     /// Class that holds the information about a jenga tower, from its physical properties and camera targets to its pieces.
     /// </summary>
-    public class JengaTower : MonoBehaviour
+    public class JengaTower : JengaMonoBehaviour
     {
         //------------------------------------------------------------------------------------//
         /*----------------------------------- FIELDS -----------------------------------------*/
@@ -38,6 +38,26 @@ namespace Jenga.Main
         //------------------------------------------------------------------------------------//
         /*---------------------------------- METHODS -----------------------------------------*/
         //------------------------------------------------------------------------------------//
+
+        protected override void SubscribeToEvents()
+        {
+            base.SubscribeToEvents();
+            Instances.GameBrain.GameModeEnded += OnGameModeEnded;
+        }
+
+        protected override void UnsubscribeFromEvents()
+        {
+            base.UnsubscribeFromEvents();
+            Instances.GameBrain.GameModeEnded -= OnGameModeEnded;
+        }
+
+        private void OnGameModeEnded(object sender, EGameMode e)
+        {
+            foreach (JengaPiece piece in towerPieces)
+            {
+                piece.StopPhysicsSimulation();
+            }
+        }
 
         private (Vector3 pos, Vector3 rot) GetTargetPieceSpot(int base1PieceIndex)
         {

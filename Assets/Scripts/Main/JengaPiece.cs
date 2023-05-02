@@ -38,7 +38,11 @@ namespace Jenga.Main
         private Vector3 targetPosition;
         private Vector3 targetRotation;
 
+        private Vector3 initialRBGOPosition;
+        private Vector3 initialRBGORotation;
+        
         private CoroutineHandle shrinkHandle;
+        private GameObject rbGameObject;
 
         //------------------------------------------------------------------------------------//
         /*--------------------------------- PROPERTIES ---------------------------------------*/
@@ -56,6 +60,9 @@ namespace Jenga.Main
             transform.localScale = Vector3.one;
             transform.localEulerAngles = targetRotation;
             transform.localPosition = targetPosition;
+
+            rbGameObject.transform.localEulerAngles = initialRBGORotation;
+            rbGameObject.transform.localPosition = initialRBGOPosition;
         }
 
         private void ShrinkOutOfExistence(Action OnEnd = null)
@@ -106,19 +113,34 @@ namespace Jenga.Main
 
             ResetSizeAndPosition();
             rigidbody.isKinematic = false;
+            rigidbody.velocity = Vector3.zero;
+
+            foreach (var label in typeLabels)
+            {
+                Color c = label.color;
+                label.color = new Color(c.r, c.g, c.b, 0);
+            }
         }
 
         public void StopPhysicsSimulation()
         {
-            if (subjectData.PieceType == EPieceType.Glass) { return; }
-
             ResetSizeAndPosition();
             rigidbody.isKinematic = true;
+
+            foreach (var label in typeLabels)
+            {
+                Color c = label.color;
+                label.color = new Color(c.r, c.g, c.b, 1);
+            }
         }
 
         private void Awake()
         {
             rigidbody.isKinematic = true;
+            rbGameObject = rigidbody.gameObject;
+
+            initialRBGOPosition = rbGameObject.transform.localPosition;
+            initialRBGORotation = rbGameObject.transform.localEulerAngles;
         }
     }
 }
