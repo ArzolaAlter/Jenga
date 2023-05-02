@@ -43,6 +43,7 @@ namespace Jenga.API
         [JsonProperty] public string grade { get; set; }
         [JsonProperty] public int mastery { get; set; }
         [JsonProperty] public string domainid { get; set; }
+        [JsonProperty] public string domain { get; set; }
         [JsonProperty] public string cluster { get; set; }
         [JsonProperty] public string standardid { get; set; }
         [JsonProperty] public string standarddescription { get; set; }

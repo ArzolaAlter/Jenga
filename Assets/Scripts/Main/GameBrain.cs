@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Jenga.API;
+using Jenga.Settings;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -46,6 +47,9 @@ namespace Jenga.Main
         /*----------------------------------- FIELDS -----------------------------------------*/
         //------------------------------------------------------------------------------------//
 
+        [SerializeField, Header("Scene References")] private Transform tableCenter;
+        [SerializeField] private Transform tableEdge;
+
         /// <summary>
         /// Fired the moment the game is actually ready to boot. This mainly means that the game is in a state where student data has already been gathered.
         /// </summary>
@@ -57,6 +61,8 @@ namespace Jenga.Main
         //------------------------------------------------------------------------------------//
         /*--------------------------------- PROPERTIES ---------------------------------------*/
         //------------------------------------------------------------------------------------//
+
+        private JengaSettingsSO Settings => Instances.GameSettings.Jenga;
 
         protected override GameBrain InstanceTarget
         {
@@ -94,6 +100,13 @@ namespace Jenga.Main
                         gradeToSubject[key].Add(subject);
                     }
 
+                    foreach (List<SubjectData> subjectList in gradeToSubject.Values)
+                    {
+                        subjectList.Sort((x, y) => String.Compare(x.domain, y.domain, StringComparison.Ordinal));
+                        subjectList.Sort((x, y) => String.Compare(x.cluster, y.cluster, StringComparison.Ordinal));
+                        subjectList.Sort((x, y) => String.Compare(x.standardid, y.standardid, StringComparison.Ordinal));
+                    }
+
                     jengaData = new JengaData(gradeToSubject);
                     Instances.SaveManager.SaveStudentData(jengaData);
                 }
@@ -110,7 +123,25 @@ namespace Jenga.Main
                 }
 
                 GameReadyToStart?.Invoke(this, jengaData);
+                InitializeTowers();
             });
+        }
+
+        private void InitializeTowers()
+        {
+            float anglePerTower = 360f / (float)jengaData.GradeToSubject.Count;
+            float currentAngle = 0;
+
+            foreach (var kvp in jengaData.GradeToSubject)
+            {
+                Vector3 pos = tableEdge.position.RotatePointAroundPivot(tableCenter.position, Vector3.up, currentAngle);
+
+                JengaTower tower = GameObject.Instantiate(Settings.JengaTowerPrefab, pos, Quaternion.Euler(new Vector3(0, currentAngle + 180, 0)));
+
+                tower.Initialize(kvp.Key, kvp.Value);
+
+                currentAngle += anglePerTower;
+            }
         }
 
         private void Start()

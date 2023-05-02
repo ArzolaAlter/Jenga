@@ -67,8 +67,8 @@ namespace Jenga.Settings
         private PieceTypeData[] pieceTypes = new PieceTypeData[3];
 
         [SerializeField, Header("Jenga Sizes")]
-        [Tooltip("Physical dimensions of each of the jenga pieces. NOTE: Ensure to respect the order: wide x tall x long.")]
-        private Vector3 singlePieceDimensions = new Vector3(2.5f, 1.5f, 7.5f);
+        [Tooltip("hysical distance there should be between each of the jenga pieces. Base this on the piece prefab, and ensure this order: wide x tall x long.")]
+        private Vector3 singlePieceOffset = new Vector3(2.5f, 1.5f, 7.5f);
 
         [SerializeField]
         [Tooltip("Determines the radius the camera will use to orbit around the bottom center section of the tower.")]
@@ -82,12 +82,21 @@ namespace Jenga.Settings
         [Tooltip("Determines the distance between each jenga tower, this distance respects the radiuses established.")]
         private float jengaTowerDistance = 6f;
 
+        [SerializeField]
+        private JengaPiece jengaPiecePrefab;
+
+        [SerializeField]
+        private JengaTower jengaTowerPrefab;
+
         // Runtime
         [NonSerialized] private Dictionary<EPieceType, PieceTypeData> pieceTypeToData;
 
         //------------------------------------------------------------------------------------//
         /*--------------------------------- PROPERTIES ---------------------------------------*/
         //------------------------------------------------------------------------------------//
+
+        public JengaPiece JengaPiecePrefab => jengaPiecePrefab;
+        public JengaTower JengaTowerPrefab => jengaTowerPrefab;
 
         public PieceTypeData this[EPieceType pieceType]
         {
@@ -122,9 +131,9 @@ namespace Jenga.Settings
         }
 
         /// <summary>
-        /// Physical dimensions of each of the jenga pieces. NOTE: Ensure to respect the order: wide x tall x long.
+        /// Physical distance there should be between each of the jenga pieces. Base this on the piece prefab, and ensure this order: wide x tall x long.
         /// </summary>
-        public Vector3 SinglePieceDimensions => singlePieceDimensions;
+        public Vector3 SinglePieceOffset => singlePieceOffset;
 
         /// <summary>
         /// Determines the radius the camera will use to orbit around the bottom center section of the tower.

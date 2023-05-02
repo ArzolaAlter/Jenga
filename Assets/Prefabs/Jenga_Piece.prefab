@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2979969742296406252}
   - component: {fileID: 725805369613853699}
   - component: {fileID: 2384183474181133514}
+  - component: {fileID: 58223912721176143}
   m_Layer: 0
   m_Name: Canvas_A
   m_TagString: Untagged
@@ -101,6 +102,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &58223912721176143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5597172828798172133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e431680636c4f8e4c98e4780e518e253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7280950152094461850
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +126,7 @@ GameObject:
   - component: {fileID: 9071495636623661934}
   - component: {fileID: 4452182909632167757}
   - component: {fileID: 6765523576806947296}
+  - component: {fileID: 4847960264453744161}
   m_Layer: 0
   m_Name: Canvas_B
   m_TagString: Untagged
@@ -202,6 +216,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4847960264453744161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7280950152094461850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e431680636c4f8e4c98e4780e518e253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8345145280192107145
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +375,7 @@ GameObject:
   - component: {fileID: 1092415480878900386}
   - component: {fileID: 3954844185612849474}
   m_Layer: 0
-  m_Name: Label_A
+  m_Name: Label_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -481,6 +507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9204127435547397372}
+  - component: {fileID: 2242587708566721477}
   m_Layer: 0
   m_Name: Jenga_Piece
   m_TagString: Untagged
@@ -496,7 +523,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9204127435547397373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9986, z: -0.537}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -506,6 +533,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2242587708566721477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9204127435547397373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a26ae0b9e12614b87c278f4be1cde5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pieceRenderer: {fileID: 9204127435807128482}
+  typeLabels:
+  - {fileID: 2678886119113133800}
+  - {fileID: 3954844185612849474}
+  rigidbody: {fileID: 5191216768005058005}
+  scaleOutTimer: 0.3
+  scaleOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &9204127435807128541
 GameObject:
   m_ObjectHideFlags: 0
