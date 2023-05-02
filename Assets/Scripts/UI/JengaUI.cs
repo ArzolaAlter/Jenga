@@ -21,6 +21,9 @@ namespace Jenga.UI
         [SerializeField]
         private TMP_Text currentlySelectedGradeLabel;
 
+        [SerializeField]
+        private JengaPieceTooltip tooltip;
+
         // Runtime
         private bool gameReadyToStart;
 
@@ -45,7 +48,7 @@ namespace Jenga.UI
             Instances.GameBrain.GameModeStarted -= OnGameModeStarted;
             Instances.GameBrain.GameModeEnded -= OnGameModeEnded;
         }
-        
+
         private void OnGameModeStarted(object sender, EGameMode args)
         {
             leftArrow.Button.interactable = false;
@@ -76,9 +79,17 @@ namespace Jenga.UI
             if (Physics.Raycast(ray, out RaycastHit hit, 10))
             {
                 JengaPiece piece = hit.transform.gameObject.GetComponentInParent<JengaPiece>();
-                if (piece == null) { return; }
+                if (piece == null)
+                {
+                    tooltip.HideTooltip();
+                    return;
+                }
 
-
+                tooltip.RevealTooltip(piece);
+            }
+            else
+            {
+                tooltip.HideTooltip();
             }
         }
 
