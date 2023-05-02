@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Jenga.Main;
@@ -11,6 +12,9 @@ namespace Jenga.UI
         //------------------------------------------------------------------------------------//
         /*----------------------------------- FIELDS -----------------------------------------*/
         //------------------------------------------------------------------------------------//
+
+        [SerializeField]
+        private CanvasGroup fader;
 
         [SerializeField]
         private CustomActionButton leftArrow;
@@ -69,6 +73,7 @@ namespace Jenga.UI
         private void OnGameReadyToStart(object sender, JengaData e)
         {
             gameReadyToStart = true;
+            LeanTween.value(fader.gameObject, val => { fader.alpha = val; }, 1f, 0f, 1f);
         }
 
         private void Update()
