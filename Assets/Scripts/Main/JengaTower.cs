@@ -25,12 +25,15 @@ namespace Jenga.Main
 
         // Runtime
         private List<JengaPiece> towerPieces = new List<JengaPiece>();
+        private string targetGrade;
 
         //------------------------------------------------------------------------------------//
         /*--------------------------------- PROPERTIES ---------------------------------------*/
         //------------------------------------------------------------------------------------//
 
+        public string TargetGrade => targetGrade;
         private JengaSettingsSO Settings => Instances.GameSettings.Jenga;
+        public Transform TowerCenter => towerCenter;
 
         //------------------------------------------------------------------------------------//
         /*---------------------------------- METHODS -----------------------------------------*/
@@ -66,6 +69,7 @@ namespace Jenga.Main
 
         public void Initialize(string gradeString, List<SubjectData> piecesData)
         {
+            targetGrade = gradeString;
             foreach (TMP_Text label in gradeLabels)
             {
                 label.SetText(gradeString);
@@ -81,6 +85,27 @@ namespace Jenga.Main
                 piece.Initialize(towerPieces.Count, pieceData);
 
                 towerPieces.Add(piece);
+            }
+        }
+
+        public void StartOrRestartSimulation()
+        {
+            int totalPieces = towerPieces.Count;
+
+            void AttemptToStartSimulation()
+            {
+                totalPieces--;
+                if (totalPieces > 0) { return; }
+
+                foreach (JengaPiece piece in towerPieces)
+                {
+                    piece.StartPhysicsSimulation();
+                }
+            }
+
+            foreach (JengaPiece piece in towerPieces)
+            {
+                piece.PollCanStartSimulation(AttemptToStartSimulation);
             }
         }
     }

@@ -44,6 +44,7 @@ namespace Jenga.Main
         /*--------------------------------- PROPERTIES ---------------------------------------*/
         //------------------------------------------------------------------------------------//
 
+        public SubjectData SubjectData => subjectData;
         private JengaSettingsSO Settings => Instances.GameSettings.Jenga;
 
         //------------------------------------------------------------------------------------//

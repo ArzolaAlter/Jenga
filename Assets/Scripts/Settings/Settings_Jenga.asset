@@ -19,18 +19,15 @@ MonoBehaviour:
     jengaPieceLabelText: NOT LEARNED
     uiLabelText: Glass
   - pieceType: 1
-    pieceMass: 3
+    pieceMass: 1
     visualMaterial: {fileID: 2100000, guid: eee6ed48452dd7345917311750e0718e, type: 2}
     jengaPieceLabelText: LEARNED
     uiLabelText: Wood
   - pieceType: 2
-    pieceMass: 6
+    pieceMass: 1
     visualMaterial: {fileID: 2100000, guid: b7755d54f05c48241a4aedb0dcfefd44, type: 2}
     jengaPieceLabelText: MASTERED
     uiLabelText: Stone
-  singlePieceOffset: {x: 0.051, y: 0.031, z: 0.151}
-  jengaTowerRadius: 12
-  jengaTowerTopHoverDistance: 3
-  jengaTowerDistance: 6
+  singlePieceOffset: {x: 0.0505, y: 0.0315, z: 0.1505}
   jengaPiecePrefab: {fileID: 2242587708566721477, guid: e1b494868ad099d4ab95a78e3d0b9bcd, type: 3}
   jengaTowerPrefab: {fileID: 2880377694929982877, guid: ee7969c4133248c4abe20c7ab12cec28, type: 3}

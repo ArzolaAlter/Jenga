@@ -71,18 +71,6 @@ namespace Jenga.Settings
         private Vector3 singlePieceOffset = new Vector3(2.5f, 1.5f, 7.5f);
 
         [SerializeField]
-        [Tooltip("Determines the radius the camera will use to orbit around the bottom center section of the tower.")]
-        private float jengaTowerRadius = 12f;
-
-        [SerializeField]
-        [Tooltip("Determines the distance the camera can go above the topmost part of the jenga tower while orbiting.")]
-        private float jengaTowerTopHoverDistance = 3f;
-
-        [SerializeField]
-        [Tooltip("Determines the distance between each jenga tower, this distance respects the radiuses established.")]
-        private float jengaTowerDistance = 6f;
-
-        [SerializeField]
         private JengaPiece jengaPiecePrefab;
 
         [SerializeField]
@@ -134,20 +122,5 @@ namespace Jenga.Settings
         /// Physical distance there should be between each of the jenga pieces. Base this on the piece prefab, and ensure this order: wide x tall x long.
         /// </summary>
         public Vector3 SinglePieceOffset => singlePieceOffset;
-
-        /// <summary>
-        /// Determines the radius the camera will use to orbit around the bottom center section of the tower.
-        /// </summary>
-        public float JengaTowerRadius => jengaTowerRadius;
-
-        /// <summary>
-        /// Determines the distance the camera can go above the topmost part of the jenga tower while orbiting.
-        /// </summary>
-        public float JengaTowerTopHoverDistance => jengaTowerTopHoverDistance;
-
-        /// <summary>
-        /// Determines the distance between each jenga tower, this distance respects the radiuses established.
-        /// </summary>
-        public float JengaTowerDistance => jengaTowerDistance;
     }
 }
